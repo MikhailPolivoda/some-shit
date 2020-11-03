@@ -37,6 +37,7 @@ __published:	// IDE-managed Components
 	TFastLineSeries *МНК_1;
 	TFastLineSeries *МНК_2;
 	TFastLineSeries *МНК_3;
+	TPointSeries *Точки;
 	void __fastcall Button1Click(TObject *Sender);
 	void __fastcall Button2Click(TObject *Sender);
 	void __fastcall Button3Click(TObject *Sender);
