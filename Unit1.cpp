@@ -18,12 +18,12 @@ const double dx=0.25;
 __fastcall TForm1::TForm1(TComponent* Owner)
 	: TForm(Owner)
 {
-Form1->Button1->Caption="Внести точку на график";
-Form1->Button2->Caption="Лагранж";
-Form1->Button3->Caption="Ньютон";
-Form1->Button4->Caption="МНК 1 степени";
-Form1->Button5->Caption="МНК 2 степени";
-Form1->Button6->Caption="МНК 3 степени";
+Form1->Button1->Caption="Р’РЅРµСЃС‚Рё С‚РѕС‡РєСѓ РЅР° РіСЂР°С„РёРє";
+Form1->Button2->Caption="Р›Р°РіСЂР°РЅР¶";
+Form1->Button3->Caption="РќСЊСЋС‚РѕРЅ";
+Form1->Button4->Caption="РњРќРљ 1 СЃС‚РµРїРµРЅРё";
+Form1->Button5->Caption="РњРќРљ 2 СЃС‚РµРїРµРЅРё";
+Form1->Button6->Caption="РњРќРљ 3 СЃС‚РµРїРµРЅРё";
 }
 
 //---------------------------------------------------------------------------
@@ -31,12 +31,12 @@ void __fastcall TForm1::Button1Click(TObject *Sender)
 {
 if(Edit1->Text == "")
 {
-	ShowMessage("Вы не ввели значение X !");
+	ShowMessage("Р’С‹ РЅРµ РІРІРµР»Рё Р·РЅР°С‡РµРЅРёРµ X !");
 	return ;
 }
 if(Edit2->Text == "")
 {
-	ShowMessage("Вы не ввели значение  Y !");
+	ShowMessage("Р’С‹ РЅРµ РІРІРµР»Рё Р·РЅР°С‡РµРЅРёРµ  Y !");
 	return ;
 }
 double y;
@@ -45,7 +45,8 @@ x = Edit1->Text.ToDouble();
 X.push_back(x);
 y = Edit2->Text.ToDouble();
 Y.push_back(y);
-Кривая->AddXY(x,y);
+РљСЂРёРІР°СЏ->AddXY(x,y);
+РўРѕС‡РєРё->AddXY(x,y);	
 Edit1->Text = "";
 Edit2->Text = "";
 }
@@ -82,7 +83,7 @@ double x2= *max_element(begin(X),end(X));
 	}
 
 	for(size_t i=0;i<x_lagr.size(); ++i){
-	Лагранж->AddXY(x_lagr[i],y_lagr[i]);
+	Р›Р°РіСЂР°РЅР¶->AddXY(x_lagr[i],y_lagr[i]);
 	}
 }
 
@@ -133,8 +134,8 @@ vector <double> x_newt;
 vector <double> y_newt;
 double x1= *min_element(begin(X),end(X));
 double x2= *max_element(begin(X),end(X));
- vector<vector<double>> differences1; //таблица конечных разностей вперед
-    vector<vector<double>> differences2; //таблица конечных разностей назад
+vector<vector<double>> differences1; //С‚Р°Р±Р»РёС†Р° РєРѕРЅРµС‡РЅС‹С… СЂР°Р·РЅРѕСЃС‚РµР№ РІРїРµСЂРµРґ
+    vector<vector<double>> differences2; //С‚Р°Р±Р»РёС†Р° РєРѕРЅРµС‡РЅС‹С… СЂР°Р·РЅРѕСЃС‚РµР№ РЅР°Р·Р°Рґ
     differences1.assign(N, vector<double>(N));
     differences2.assign(N, vector<double>(N));
 	for (int i = 0; i < N; i++)
@@ -166,7 +167,7 @@ double x2= *max_element(begin(X),end(X));
 	   }
 
 	   for(size_t i=0;i<x_newt.size(); ++i){
-	Ньютон->AddXY(x_newt[i],y_newt[i]);
+	РќСЊСЋС‚РѕРЅ->AddXY(x_newt[i],y_newt[i]);
 	}
 }
 
@@ -202,7 +203,7 @@ vector<vector<double>> sums;
     }
 
     double temp=0;
-	for(int i=0; i<K+1; i++) //приведение к диагональному виду
+	for(int i=0; i<K+1; i++) //РїСЂРёРІРµРґРµРЅРёРµ Рє РґРёР°РіРѕРЅР°Р»СЊРЅРѕРјСѓ РІРёРґСѓ
     {
         if(sums[i][i]==0)
         {
@@ -225,13 +226,13 @@ vector<vector<double>> sums;
         }
     }
 
-    for(int k=0; k<K+1; k++) //расчет решения
+    for(int k=0; k<K+1; k++) //СЂР°СЃС‡РµС‚ СЂРµС€РµРЅРёСЏ
     {
         for(int i=k+1; i<K+1; i++)
         {
         if(sums[k][k]==0)
         {
-            printf("\nРешения не существует\n");
+            printf("\Р РµС€РµРЅРёСЏ РЅРµ СЃСѓС‰РµСЃС‚РІСѓРµС‚\n");
             exit(1);
         }
         double M = sums[i][k] / sums[k][k];
@@ -275,7 +276,7 @@ int K=1;
         y_squ1.push_back(sum);
 	}
 	for(size_t i=0;i<x_squ1.size(); ++i){
-	МНК_1->AddXY(x_squ1[i],y_squ1[i]);
+	РњРќРљ_1->AddXY(x_squ1[i],y_squ1[i]);
 	}
 }
 
@@ -299,7 +300,7 @@ int K=2;
         y_squ2.push_back(sum);
 	}
 	for(size_t i=0;i<x_squ2.size(); ++i){
-	МНК_2->AddXY(x_squ2[i],y_squ2[i]);
+	РњРќРљ_2->AddXY(x_squ2[i],y_squ2[i]);
 	}
 }
 //---------------------------------------------------------------------------
@@ -324,7 +325,7 @@ int K=3;
         y_squ3.push_back(sum);
 	}
 	for(size_t i=0;i<x_squ3.size(); ++i){
-	МНК_3->AddXY(x_squ3[i],y_squ3[i]);
+	РњРќРљ_3->AddXY(x_squ3[i],y_squ3[i]);
    }
 }
 //---------------------------------------------------------------------------
