@@ -23,20 +23,20 @@ class TForm1 : public TForm
 {
 __published:	// IDE-managed Components
 	TChart *Chart1;
-	TFastLineSeries *Êğèâàÿ;
+	TFastLineSeries *ĞšÑ€Ğ¸Ğ²Ğ°Ñ;
 	TEdit *Edit1;
 	TEdit *Edit2;
 	TButton *Button1;
-	TFastLineSeries *Ëàãğàíæ;
+	TFastLineSeries *Ğ›Ğ°Ğ³Ñ€Ğ°Ğ½Ğ¶;
 	TButton *Button2;
 	TButton *Button3;
 	TButton *Button4;
-	TFastLineSeries *Íüşòîí;
+	TFastLineSeries *ĞÑŒÑÑ‚Ğ¾Ğ½;
 	TButton *Button5;
 	TButton *Button6;
-	TFastLineSeries *ÌÍÊ_1;
-	TFastLineSeries *ÌÍÊ_2;
-	TFastLineSeries *ÌÍÊ_3;
+	TFastLineSeries *ĞœĞĞš_1;
+	TFastLineSeries *ĞœĞĞš_2;
+	TFastLineSeries *ĞœĞĞš_3;
 	void __fastcall Button1Click(TObject *Sender);
 	void __fastcall Button2Click(TObject *Sender);
 	void __fastcall Button3Click(TObject *Sender);
