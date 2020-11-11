@@ -7,15 +7,15 @@ using namespace std;
 const int N = 5;
 const double dx = 0.01;
 
-vector<double> tridiagonal_matrix_algorithm(const vector<double>& y, const vector<double>& h) { //метод прогонки
-	vector<vector<double>> matrixa; // матрица системы уравнений
+vector<double> tridiagonal_matrix_algorithm(const vector<double>& y, const vector<double>& h) { //РјРµС‚РѕРґ РїСЂРѕРіРѕРЅРєРё
+	vector<vector<double>> matrixa; // РјР°С‚СЂРёС†Р° СЃРёСЃС‚РµРјС‹ СѓСЂР°РІРЅРµРЅРёР№
 	matrixa.assign(N - 2, vector<double>(N - 2));
-	vector<double>matrixb(N - 2); // столбец свободных членов
+	vector<double>matrixb(N - 2); // СЃС‚РѕР»Р±РµС† СЃРІРѕР±РѕРґРЅС‹С… С‡Р»РµРЅРѕРІ
 	double temp = 0.0;
 	vector<double> a(N - 2); 
 	vector<double> B(N - 2); 
 	vector<double> C(N - 2);
-	// создание трехдиагональной матрицы
+	// СЃРѕР·РґР°РЅРёРµ С‚СЂРµС…РґРёР°РіРѕРЅР°Р»СЊРЅРѕР№ РјР°С‚СЂРёС†С‹
 	for (size_t i = 0; i < N - 2; ++i) {
 		if (i != N - 3) {
 			matrixa[i][i] = 2 * (h[i]+h[i + 1]);
@@ -27,7 +27,7 @@ vector<double> tridiagonal_matrix_algorithm(const vector<double>& y, const vecto
 		}
 		matrixb[i] = 3 * (((y[i + 2] - y[i + 1]) / h[i + 1]) - ((y[i + 1] - y[i]) / h[i]));
 	}
-	// прямой ход
+	// РїСЂСЏРјРѕР№ С…РѕРґ
 	temp = matrixa[0][0];
 	a[0] = -matrixa[0][1] / temp;
 	B[0] = matrixb[0] / temp;
@@ -36,7 +36,7 @@ vector<double> tridiagonal_matrix_algorithm(const vector<double>& y, const vecto
 		a[i] = -matrixa[i][i + 1] / temp;
 		B[i] = (matrixb[i] - matrixa[i][i - 1] * B[i - 1]) / temp;
 	}
-	// обратный ход
+	// РѕР±СЂР°С‚РЅС‹Р№ С…РѕРґ
 	C[N-3] = (matrixb[N-3] - matrixa[N-3][N-3 - 1] * B[N-3 - 1]) / (matrixa[N-3][N-3] + matrixa[N-3][N-3 - 1] * a[N-3 - 1]);
 	for (int i = N-3 - 1; i >= 0; i--) {
 		C[i] = a[i] * C[i + 1] + B[i];
@@ -82,12 +82,12 @@ int main() {
 	vector <double> b(N - 1);
 	vector <double> d(N - 1);
 
-	//нахождение b и d коэффициентов
+	//РЅР°С…РѕР¶РґРµРЅРёРµ b Рё d РєРѕСЌС„С„РёС†РёРµРЅС‚РѕРІ
 	for (size_t i = 0; i < N - 1; ++i) {
 		b[i] = ((y[i + 1] - y[i]) / h[i]) - (c[i + 1] + (2 * c[i])) * (h[i] / 3);
 		d[i] = (c[i + 1] - c[i]) / (3 * h[i]);
 	}
-	// вектора для построения графиков
+	// РІРµРєС‚РѕСЂР° РґР»СЏ РїРѕСЃС‚СЂРѕРµРЅРёСЏ РіСЂР°С„РёРєРѕРІ
 	vector<double>x1;
 	vector<double>y1;
 	vector<double>x2;
